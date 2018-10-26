@@ -1,0 +1,9 @@
+{
+    "id" : "WGSample",
+    "version" : "0.1.0-SNAPSHOT",
+    "author" : "",
+    "displayName" : "WGSample",
+    "description" : "",
+    "dependencies" : [],
+    "serverSideOnly" : false
+}
