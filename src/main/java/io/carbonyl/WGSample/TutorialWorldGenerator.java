@@ -15,7 +15,10 @@
  */
 package io.carbonyl.WGSample;
 
-import org.terasology.core.world.generator.facetProviders.SeaLevelProvider;
+import org.terasology.core.world.generator.facetProviders.*;
+import org.terasology.core.world.generator.rasterizers.FloraRasterizer;
+import org.terasology.core.world.generator.rasterizers.SolidRasterizer;
+import org.terasology.core.world.generator.rasterizers.TreeRasterizer;
 import org.terasology.engine.SimpleUri;
 import org.terasology.registry.In;
 import org.terasology.world.generation.BaseFacetedWorldGenerator;
@@ -35,12 +38,19 @@ public class TutorialWorldGenerator extends BaseFacetedWorldGenerator {
     @Override
     protected WorldBuilder createWorld() {
         return new WorldBuilder(worldGeneratorPluginLibrary)
+
                 .addProvider(new SurfaceProvider())
                 .addProvider(new SeaLevelProvider(0))
+                .addProvider(new PerlinHumidityProvider())
+                .addProvider(new PerlinSurfaceTemperatureProvider())
                 .addProvider(new MountainsProvider())
-                .addProvider(new HouseProvider())
+                .addProvider(new BiomeProvider())
+                .addProvider(new SurfaceToDensityProvider())
+                .addProvider(new DefaultFloraProvider())
+                .addProvider(new DefaultTreeProvider())
+                .addRasterizer(new FloraRasterizer())
                 .addRasterizer(new TutorialWorldRasterizer())
-                .addRasterizer(new HouseRasterizer())
+                .addRasterizer(new TreeRasterizer())
                 .addPlugins();
     }
 }

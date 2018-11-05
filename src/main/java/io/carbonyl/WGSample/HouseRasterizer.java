@@ -29,6 +29,7 @@ import org.terasology.world.generation.WorldRasterizer;
 import java.util.Map;
 
 public class HouseRasterizer implements WorldRasterizer {
+
     private Block stone;
 
     @Override

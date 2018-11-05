@@ -17,13 +17,9 @@ package io.carbonyl.WGSample;
 
 import org.terasology.entitySystem.Component;
 import org.terasology.math.ChunkMath;
-import org.terasology.math.geom.Vector2f;
 import org.terasology.math.geom.Vector3i;
 import org.terasology.registry.CoreRegistry;
 import org.terasology.rendering.nui.properties.Range;
-import org.terasology.utilities.procedural.Noise;
-import org.terasology.utilities.procedural.SimplexNoise;
-import org.terasology.utilities.procedural.SubSampledNoise;
 import org.terasology.world.block.Block;
 import org.terasology.world.block.BlockManager;
 import org.terasology.world.chunks.CoreChunk;
@@ -33,11 +29,11 @@ import org.terasology.world.generation.facets.SurfaceHeightFacet;
 
 public class TutorialWorldRasterizer implements WorldRasterizer {
 
-    private Block dirt;
+    private Block grass;
 
     @Override
     public void initialize() {
-        dirt = CoreRegistry.get(BlockManager.class).getBlock("Core:Dirt");
+        grass = CoreRegistry.get(BlockManager.class).getBlock("Core:Grass");
     }
 
     @Override
@@ -46,7 +42,7 @@ public class TutorialWorldRasterizer implements WorldRasterizer {
         for (Vector3i position : chunkRegion.getRegion()) {
             float surfaceHeight = surfaceHeightFacet.getWorld(position.x, position.z);
             if (position.y < surfaceHeight) {
-                chunk.setBlock(ChunkMath.calcBlockPos(position), dirt);
+                chunk.setBlock(ChunkMath.calcBlockPos(position), grass);
             }
         }
     }
